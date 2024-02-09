@@ -1,0 +1,35 @@
+:root {
+  --color-logo: #6e694c;
+  --color-pastel-1: #87805E;
+  --color-pastel-2: #b8b189;
+  --color-pastel-3: #D8CCA3;
+  --color-pastel-4: #EDDFB3;
+}
+
+*,
+*::before,
+*::after {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+}
+
+.wrapper {
+  max-width: 1400px;
+  height: 100%;
+  margin: 0 auto;
+  padding: 0 1rem;
+}
+
+.fs-small {
+  font-size: small !important;
+}
+
+.text-balance {
+  text-wrap: balance;
+}
+
+body {
+  background-color: var(--color-pastel-4);
+}
