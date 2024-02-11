@@ -92,8 +92,7 @@ const title = 'Le Etiqueta de Atrás'
 
     <section>
       <div class="wrapper">
-        <div class="row py-4">
-          <div class="col-12 col-md-3 selector mb-3 py-md-3">
+          <div class="selector mb-3 py-md-3">
             <div class="col d-flex">
               <form class="d-flex align-self-center mb-2 flex-grow-1" role="search">
                 <input
@@ -114,13 +113,12 @@ const title = 'Le Etiqueta de Atrás'
             </form>
           </div>
 
-          <div class="col-12 col-md-9 py-md-3">
+          <div class="py-md-3">
             <div>
               <CardGrid />
             </div>
           </div>
         </div>
-      </div>
     </section>
   </main>
 </template>

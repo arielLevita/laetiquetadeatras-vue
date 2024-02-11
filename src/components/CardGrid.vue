@@ -24,25 +24,27 @@ export default {
 </script>
 
 <template>
-  <div class="d-flex flex-wrap align-items-center justify-content-between row-gap-3">
+  <div class="d-flex flex-wrap align-items-center justify-content-around row-gap-3">
     <div
       v-if="products.length > 0"
       v-for="product in products"
       :key="product.id"
-      class="card shadow px-3 py-2"
+      class="card d-flex flex-row shadow p-2"
       :id="'card' + product.id"
     >
-      <div class="card-image rounded rounded-lg">
+      <div class="card-image rounded rounded-lg p-1 w-50 h-100">
         <img :src="product.imageFront" :alt="product.name" class="img-fluid rounded rounded-lg" />
       </div>
-      <div class="card-body">
-        <p class="card-title text-balance fw-medium">{{ product.name }}</p>
-      </div>
-      <div class="row card-bottom d-flex align-items-bottom my-2 mx-1">
-        <div class="col btn-details shadow p-0">
-          <RouterLink :to="'../details/' + product.id" class="btn btn-sm w-100"
+      <div class="px-2 w-50 d-flex flex-column justify-content-between">
+        <div class="card-body p-1">
+          <p class="card-title text-balance fw-medium m-0">{{ product.name }}</p>
+        </div>
+        <div class="card-bottom">
+          <div class="p-0 mb-1">
+            <RouterLink :to="'../details/' + product.id" class="btn btn-sm shadow w-100"
             >Detalles</RouterLink
-          >
+            >
+          </div>
         </div>
       </div>
     </div>
@@ -52,12 +54,13 @@ export default {
 
 <style scope>
 .card {
-  width: 14rem;
-  height: 25rem;
+  width: 25rem;
+  /* height: 13rem; */
   background-color: var(--color-pastel-4);
 }
 
-img {
+.card-image > img {
+  max-height: 100%;
   aspect-ratio: 1 / 1;
   background-repeat: no-repeat;
   background-size: cover;
@@ -74,5 +77,11 @@ img {
 .btn:hover {
   background-color: var(--color-logo) !important;
   color: var(--color-pastel-4) !important;
+}
+
+@media only screen and (max-width:400px) {
+  .card-title {
+    font-size: smaller;
+  }
 }
 </style>
