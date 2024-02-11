@@ -1,6 +1,7 @@
 <script>
 import { getProducts } from '../scripts/firebase.js'
 import { RouterLink } from 'vue-router'
+
 export default {
   data() {
     return {
@@ -9,7 +10,6 @@ export default {
   },
   async created() {
     try {
-      // Assuming getProducts and checkboxGenerator are available globally as in your original code
       const querySnapshot = await getProducts()
       const products = querySnapshot.docs.map((doc) => ({
         id: doc.id,
@@ -18,7 +18,6 @@ export default {
       this.products = products
     } catch (error) {
       console.error(error)
-      // Handle error appropriately
     }
   }
 }
@@ -47,7 +46,7 @@ export default {
         </div>
       </div>
     </div>
-    <h3 v-else class="display-1 fw-bolder text-center">No soup for you!</h3>
+    <h3 v-else class="display-1 fw-bolder text-center">No se han encontrado productos que coincidan con la búsqueda.</h3>
   </div>
 </template>
 
@@ -58,7 +57,7 @@ export default {
   background-color: var(--color-pastel-4);
 }
 
-.card-image > img {
+img {
   aspect-ratio: 1 / 1;
   background-repeat: no-repeat;
   background-size: cover;
@@ -67,14 +66,12 @@ export default {
     rgba(0, 0, 0, 0.23) 0px 6px 6px;
 }
 
-.card-bottom a,
 .btn {
   background-color: var(--color-pastel-2);
   color: #212529;
 }
 
-.card-bottom a:hover,
-button[type='submit']:hover {
+.btn:hover {
   background-color: var(--color-logo) !important;
   color: var(--color-pastel-4) !important;
 }
