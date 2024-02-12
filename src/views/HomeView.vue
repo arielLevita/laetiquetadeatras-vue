@@ -1,7 +1,18 @@
 <script setup>
-import CardGrid from '@/components/CardGrid.vue';
+import { ref, onMounted } from 'vue'
+import { productsArray } from '../scripts/firebase.js'
+import CardItem from '@/components/CardItem.vue';
 
 const title = 'Le Etiqueta de Atrás'
+const products = ref([])
+
+onMounted(async () => {
+    try {
+        products.value = await productsArray
+    } catch (error) {
+        console.error('Error fetching products:', error)
+    }
+})
 </script>
 
 <template>
@@ -114,9 +125,13 @@ const title = 'Le Etiqueta de Atrás'
           </div>
 
           <div class="py-md-3">
-            <div>
-              <CardGrid />
+            <div v-if="products.length > 0"
+            class="d-flex flex-wrap align-items-center justify-content-around row-gap-3">
+              <CardItem v-for="product in products" :key="product.id" :product="product" />
             </div>
+            <h3 v-else class="display-1 fw-bolder text-center">
+            No se han encontrado productos que coincidan con la búsqueda.
+        </h3>
           </div>
         </div>
     </section>

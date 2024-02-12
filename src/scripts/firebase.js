@@ -13,7 +13,6 @@ const firebaseConfig = {
 const app = initializeApp(firebaseConfig);
 const db = getFirestore(app);
 
-
 /* addDoc(collection(db, "productos"), {
     brand: "Royal",
     name: "Gelatina Frutilla Regular Royal 25g",
@@ -29,7 +28,16 @@ const db = getFirestore(app);
         console.error("Error adding document: ", error);
     }); */
 
+const getProducts = async () => {
+    try {
+        const querySnapshot = await getDocs(collection(db, "productos"))
+        return querySnapshot.docs.map((doc) => ({
+            id: doc.id,
+            ...doc.data()
+        }))
+    } catch (error) {
+        console.error(error)
+    }
+}
 
-const getProducts = () => getDocs(collection(db, "productos"));
-
-export { getProducts };
+export const productsArray = getProducts();
