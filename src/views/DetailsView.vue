@@ -1,21 +1,21 @@
 <script>
-import { getProducts } from '@/scripts/firebase'
+import { productsArray } from '../scripts/firebase.js'
+import VueMagnifier from '@websitebeaver/vue-magnifier'
+import '@websitebeaver/vue-magnifier/styles.css'
 export default {
     data() {
         return {
             product: null
         }
     },
+    components: {
+        VueMagnifier
+    },
     async created() {
         try {
+            
             const detailId = this.$route.params.id
-
-            const querySnapshot = await getProducts()
-            const products = querySnapshot.docs.map((doc) => ({
-                id: doc.id,
-                ...doc.data()
-            }))
-
+            const products = await productsArray
             this.product = products.find((product) => product.id == detailId)
         } catch (error) {
             console.log(error)
@@ -32,7 +32,11 @@ export default {
 <template>
     <div v-if="product" class="details-card row p-5 grid gap-3">
         <div class="col-lg-8 p-0 details-image-container border border-dark">
-            <img :src="product.imageBack" alt="Product Image" />
+            <VueMagnifier 
+                :src="product.imageBack"
+                alt="Product Image"
+                class="w-100 d-block"
+            />
             <span>Pase el cursor para agrandar</span>
         </div>
         <div class="col p-3 details-data bg-light">
@@ -72,12 +76,6 @@ export default {
 
 .details-image-container:hover {
     cursor: zoom-in;
-}
-
-.details-image-container img {
-    width: 100%;
-    position: absolute;
-    display: block;
 }
 
 .details-image-container span {

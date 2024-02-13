@@ -11,6 +11,7 @@
     "format": "prettier --write src/"
   },
   "dependencies": {
+    "@websitebeaver/vue-magnifier": "^1.1.0",
     "firebase": "^10.7.2",
     "vue": "^3.4.15",
     "vue-router": "^4.2.5"
