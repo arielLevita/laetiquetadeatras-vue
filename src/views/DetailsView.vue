@@ -30,7 +30,7 @@ export default {
 </script>
 
 <template>
-    <div v-if="product" class="details-card row p-5 grid gap-3">
+    <div v-if="product" class="details-card container row p-3 my-3 mx-auto grid gap-3">
         <div class="col-lg-8 p-0 details-image-container border border-dark">
             <VueMagnifier 
                 :src="product.imageBack"
