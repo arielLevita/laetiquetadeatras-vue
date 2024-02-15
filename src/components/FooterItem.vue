@@ -1,5 +1,5 @@
 <template>
-  <footer class="text-center pt-3">
+  <footer class="text-center pt-3 mt-3">
     <p class="mb-2">
       Sitio web diseñado y desarrollado por
       <a href="https://www.linkedin.com/in/ariel-levita/" target="_blank">Ariel Levita</a>

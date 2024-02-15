@@ -1,22 +1,63 @@
 <script setup>
-import { ref, onMounted } from 'vue'
+import { ref, onMounted, computed } from 'vue'
 import { productsArray } from '../scripts/firebase.js'
 import { checkboxGenerator } from '@/scripts/smallScripts'
-import CardItem from '@/components/CardItem.vue'
+import SearchForm from '@/components/SearchForm.vue'
 import CheckboxFilter from '@/components/CheckboxFilter.vue'
+import CardItem from '@/components/CardItem.vue'
 
-const title = 'Le Etiqueta de Atrás'
-const products = ref([])
-const categories = ref([])
+const title = 'La Etiqueta de Atrás'
+let products = ref([])
+let categories = ref([])
+let searchFilter = ref('')
+let checkboxFilter = ref([])
+let textFiltered = ref([])
 
 onMounted(async () => {
     try {
         products.value = await productsArray
+        textFiltered.value = [...products.value]
         categories.value = checkboxGenerator(products.value)
     } catch (error) {
         console.error('Error fetching products:', error)
     }
 })
+
+const filteredProducts = computed(() => {
+    let productsList = products.value
+
+    if (checkboxFilter.value.length) {
+        productsList = productsList.filter((product) =>
+            checkboxFilter.value.includes(product.category)
+        )
+    }
+
+    if (searchFilter.value.length > 0) {
+        productsList = productsList.filter(
+            (product) =>
+                product.name.toLowerCase().includes(searchFilter.value.toLowerCase()) ||
+                product.brand.toLowerCase().includes(searchFilter.value.toLowerCase())
+        )
+    }
+    return productsList
+})
+
+const handleSearch = (searchTerm) => {
+    searchFilter.value = searchTerm
+}
+
+const handleCheckboxFilter = (categoryFilter) => {
+    if (checkboxFilter && checkboxFilter.value) {
+        if (checkboxFilter.value.includes(categoryFilter)) {
+            const index = checkboxFilter.value.indexOf(categoryFilter)
+            if (index !== -1) {
+                checkboxFilter.value.splice(index, 1)
+            }
+        } else {
+            checkboxFilter.value.push(categoryFilter)
+        }
+    }
+}
 </script>
 
 <template>
@@ -40,7 +81,7 @@ onMounted(async () => {
 
     <main>
         <section>
-            <div class="slider container-fluid py-2 py-md-3">
+            <div class="slider container-fluid py-2 py-md-5 mb-3">
                 <div class="wrapper">
                     <div class="px-md-2">
                         <div
@@ -110,31 +151,8 @@ onMounted(async () => {
 
         <section>
             <div class="wrapper">
-                <div class="selector mb-3 py-md-3">
-                    <div class="col d-flex">
-                        <form class="d-flex align-self-center mb-2 flex-grow-1" role="search">
-                            <input
-                                class="form-control me-2"
-                                type="text"
-                                placeholder="Buscar producto"
-                                id="searchBox"
-                            />
-                            <button class="btn shadow" type="button" id="btnSearch">
-                                <svg
-                                    xmlns="http://www.w3.org/2000/svg"
-                                    width="16"
-                                    height="16"
-                                    fill="currentColor"
-                                    class="bi bi-search"
-                                    viewBox="0 0 16 16"
-                                >
-                                    <path
-                                        d="M11.742 10.344a6.5 6.5 0 1 0-1.397 1.398h-.001q.044.06.098.115l3.85 3.85a1 1 0 0 0 1.415-1.414l-3.85-3.85a1 1 0 0 0-.115-.1zM12 6.5a5.5 5.5 0 1 1-11 0 5.5 5.5 0 0 1 11 0"
-                                    />
-                                </svg>
-                            </button>
-                        </form>
-                    </div>
+                <div class="my-5 py-md-3">
+                    <SearchForm @searchTerm="handleSearch" />
 
                     <p class="m-0 py-2">Filtrar por categoría:</p>
                     <form action="#" class="d-flex flex-wrap" id="categorySelectors">
@@ -142,9 +160,8 @@ onMounted(async () => {
                             class="d-flex flex-wrap justify-content-center align-items-center p-2 my-1 rounded rounded-lg w-100"
                         >
                             <CheckboxFilter
-                                v-for="category in categories"
-                                :key="category"
-                                :category="category"
+                                :products="products"
+                                @categoryFilter="handleCheckboxFilter"
                             />
                         </div>
                     </form>
@@ -156,7 +173,7 @@ onMounted(async () => {
                         class="d-flex flex-wrap align-items-center justify-content-around row-gap-3"
                     >
                         <CardItem
-                            v-for="product in products"
+                            v-for="product in filteredProducts"
                             :key="product.id"
                             :product="product"
                         />
@@ -169,3 +186,14 @@ onMounted(async () => {
         </section>
     </main>
 </template>
+
+<style scoped>
+.intro {
+    text-wrap: pretty;
+}
+.slider {
+    background-color: var(--color-pastel-2);
+    text-shadow: -3px -1px 4px var(--color-pastel-4);
+    clip-path: polygon(0 0, 100% 10%, 100% 100%, 0% 100%);
+}
+</style>

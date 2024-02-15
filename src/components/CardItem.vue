@@ -1,18 +1,17 @@
 <script setup>
 import { RouterLink } from 'vue-router'
+
 const props = defineProps(['product'])
 </script>
 
 <template>
-    <div
-        class="card d-flex flex-row shadow p-2"
-        :id="'card' + props.product.id"
-    >
+    <div class="card d-flex flex-row shadow p-2" :id="'card' + props.product.id">
         <div class="card-image rounded rounded-lg p-1 w-50 h-100">
             <img
                 :src="props.product.imageFront"
                 :alt="props.product.name"
                 class="img-fluid rounded rounded-lg"
+                loading="lazy"
             />
         </div>
         <div class="px-2 w-50 d-flex flex-column justify-content-between">
@@ -21,7 +20,9 @@ const props = defineProps(['product'])
             </div>
             <div class="card-bottom">
                 <div class="p-0 mb-1">
-                    <RouterLink :to="'../details/' + props.product.id" class="btn btn-sm shadow w-100"
+                    <RouterLink
+                        :to="'../details/' + props.product.id"
+                        class="btn btn-sm shadow w-100"
                         >Detalles</RouterLink
                     >
                 </div>
