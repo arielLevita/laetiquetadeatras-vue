@@ -3,7 +3,7 @@ import { RouterLink } from 'vue-router'
 </script>
 
 <template>
-  <nav class="navbar navbar-expand-md navbar-dark m-0 p-0">
+  <nav class="navbar navbar-expand-md navbar-dark m-0 p-2">
     <div class="wrapper d-flex justify-content-between align-items-center w-100">
       <RouterLink to="/" class="navbar-brand align-self-start">
         <img src="/nutritional_claro.png" alt="la etiqueta de atrás logo" />

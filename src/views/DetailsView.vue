@@ -30,15 +30,16 @@ export default {
 </script>
 
 <template>
-    <div v-if="product" class="details-card container row p-3 my-3 mx-auto grid gap-3">
-        <div class="col-lg-8 p-0 details-image-container border border-dark">
-            <VueMagnifier 
+    <div class="min-vh-100">
+        <div v-if="product" class="details-card container row p-3 my-3 mx-auto grid gap-3">
+            <div class="col-lg-8 p-0 details-image-container border border-dark">
+                <VueMagnifier 
                 :src="product.imageBack"
                 alt="Product Image"
                 class="w-100 d-block"
-            />
-            <span>Pase el cursor para agrandar</span>
-        </div>
+                />
+                <span>Pase el cursor para agrandar</span>
+            </div>
         <div class="col p-3 details-data bg-light">
             <div>
                 <h3 class="text-center p-3">{{ product.name }}</h3>
@@ -58,6 +59,7 @@ export default {
             </div>
         </div>
     </div>
+</div>
 </template>
 
 <style scope>
@@ -74,9 +76,9 @@ export default {
     box-sizing: inherit;
 }
 
-.details-image-container:hover {
+/* .details-image-container:hover {
     cursor: zoom-in;
-}
+} */
 
 .details-image-container span {
     z-index: 5;
@@ -115,5 +117,11 @@ export default {
 
 .details-data li > span {
     font-weight: bold;
+}
+
+@media (hover: none) {
+    .details-image-container span {
+        display: none;
+    }
 }
 </style>
