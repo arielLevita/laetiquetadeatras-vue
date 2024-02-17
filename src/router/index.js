@@ -21,6 +21,11 @@ const router = createRouter({
       path: '/details/:id',
       name: 'details',
       component: () => import('../views/DetailsView.vue')
+    },
+    {
+      path: '/:pathMatch(.*)*',
+      name: '/error',
+      component: () => import('../views/ErrorPageView.vue')
     }
   ]
 })

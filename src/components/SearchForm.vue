@@ -16,7 +16,7 @@ const searchTerm = (e) => {
                 id="searchBox"
                 @input="searchTerm"
             />
-            <button class="btn shadow" type="button" id="btnSearch">
+            <button class="btn shadow" type="button" id="btnSearch" aria-label="search">
                 <svg
                     xmlns="http://www.w3.org/2000/svg"
                     width="16"

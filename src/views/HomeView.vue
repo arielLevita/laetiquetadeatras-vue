@@ -5,6 +5,7 @@ import { checkboxGenerator } from '@/scripts/smallScripts'
 import SearchForm from '@/components/SearchForm.vue'
 import CheckboxFilter from '@/components/CheckboxFilter.vue'
 import CardItem from '@/components/CardItem.vue'
+import ToTopButton from '@/components/ToTopButton.vue'
 
 const title = 'La Etiqueta de Atrás'
 let products = ref([])
@@ -62,6 +63,7 @@ const handleCheckboxFilter = (categoryFilter) => {
 
 <template>
     <header>
+        <ToTopButton />
         <h1 class="text-center my-5 py-4">{{ title }}</h1>
 
         <div class="container-fluid intro">
@@ -185,7 +187,7 @@ const handleCheckboxFilter = (categoryFilter) => {
 
 <style scoped>
 h1 {
-    font-size: calc(1.75rem + 1.5vw);
+    font-size: clamp(2rem, 2rem + 1.75vw, 5rem);
 }
 
 .intro {
