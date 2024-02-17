@@ -10,12 +10,12 @@ import { RouterLink } from 'vue-router';
                     href="https://www.linkedin.com/in/ariel-levita/"
                     target="_blank"
                     rel="noopener"
-                    class="mx-1"
+                    class="mx-2"
                 >
                     <svg
                         xmlns="http://www.w3.org/2000/svg"
-                        width="16"
-                        height="16"
+                        width="24"
+                        height="24"
                         fill="currentColor"
                         class="bi bi-linkedin"
                         viewBox="0 0 16 16"
@@ -29,12 +29,12 @@ import { RouterLink } from 'vue-router';
                     href="https://github.com/arielLevita"
                     target="_blank"
                     rel="noopener"
-                    class="mx-1"
+                    class="mx-2"
                 >
                     <svg
                         xmlns="http://www.w3.org/2000/svg"
-                        width="16"
-                        height="16"
+                        width="24"
+                        height="24"
                         fill="currentColor"
                         class="bi bi-github"
                         viewBox="0 0 16 16"
@@ -44,12 +44,12 @@ import { RouterLink } from 'vue-router';
                         />
                     </svg>
                 </a>
-                <RouterLink to="/contact" class="mx-1"
+                <RouterLink to="/contact" class="mx-2"
                 >
                     <svg
                         xmlns="http://www.w3.org/2000/svg"
-                        width="16"
-                        height="16"
+                        width="24"
+                        height="24"
                         fill="currentColor"
                         class="bi bi-envelope"
                         viewBox="0 0 16 16"
