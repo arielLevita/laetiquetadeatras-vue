@@ -88,11 +88,11 @@ const handleCheckboxFilter = (categoryFilter) => {
         </div>
     </header>
 
-    <main class="px-2">
+    <main>
         <section>
             <div class="slider container-fluid py-2 py-md-5 mb-3">
                 <div class="wrapper">
-                    <div class="px-md-2">
+                    <div class="px-2">
                         <div
                             class="d-flex flex-column flex-md-row justify-content-center align-items-center align-items-sm-center flex-wrap pt-5"
                         >
