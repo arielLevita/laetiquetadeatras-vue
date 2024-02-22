@@ -47,4 +47,10 @@ const categoryFilter = (e) => {
     border-color: rgba(0, 0, 0, 0.25);
     background-color: var(--color-logo);
 }
+
+@media screen and (width <= 500px) {
+    .category-selector {
+        width: 100%;
+    }
+}
 </style>

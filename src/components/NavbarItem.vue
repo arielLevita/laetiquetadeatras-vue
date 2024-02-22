@@ -24,7 +24,7 @@ import { RouterLink } from 'vue-router'
           <span class="navbar-toggler-icon"></span>
         </button>
         <div class="collapse navbar-collapse" id="navbarContent">
-          <ul class="navbar-nav me-auto m-md-0 gap-4">
+          <ul class="navbar-nav me-auto m-md-0 pt-3 pt-md-0 gap-4">
             <li class="nav-item">
                 <RouterLink to="/" class="nav-link fw-semibold fs-small text-light p-0 text-uppercase">Inicio</RouterLink>
             </li>

@@ -24,12 +24,12 @@ onMounted(() => {
 #toTopButton {
     position: fixed;
     bottom: 2rem;
-    right: 1rem;
+    right: 2rem;
     transform: scale(1.2);
-    background-color: var(--color-pastel-2);
-    color: #212529;
+    background-color: rgba(184,177,137,0.7);
+    color: rgba(33,37,41,0.7);
     padding: 0.3rem 0.5rem 0.4rem 0.5rem;
-    border: 1px solid var(--color-logo);
+    border: 1px solid rgba(110,105,176,0.5);
     opacity: 0;
     transition: opacity 1s;
     z-index: 2;

@@ -13,6 +13,7 @@ let categories = ref([])
 let searchFilter = ref('')
 let checkboxFilter = ref([])
 let textFiltered = ref([])
+let cardsToShow = ref(6)
 
 onMounted(async () => {
     try {
@@ -23,6 +24,12 @@ onMounted(async () => {
         console.error('Error fetching products:', error)
     }
 })
+
+const slicedProducts = computed(() => filteredProducts.value.slice(0, cardsToShow.value))
+
+const handleLoadMoreCards = () => {
+    cardsToShow.value += 6
+}
 
 const filteredProducts = computed(() => {
     let productsList = products.value
@@ -64,20 +71,24 @@ const handleCheckboxFilter = (categoryFilter) => {
 <template>
     <header>
         <ToTopButton />
-        <h1 class="text-center my-5 py-4">{{ title }}</h1>
+        <h1 class="text-center text-break my-5 py-4 px-4">{{ title }}</h1>
 
         <div class="container-fluid intro">
             <div class="wrapper">
                 <div class="col-12 col-md-10 col-lg-8 mx-auto py-3 pt-md-4 pb-md-5">
-                    <p class="px-md-4 m-0 text-dark fs-5">
-                        En este sitio vas a poder encontrar la información nutricional de productos de supermercado directamente desde sus etiquetas con el propósito de brindarte datos necesarios para tomar decisiones informadas sobre tu alimentación. Explorá la plataforma y descubrí cómo podés mejorar tu bienestar a través del conocimiento nutricional.
+                    <p class="px-md-4 m-0 text-dark text-pretty fs-md-5">
+                        En este sitio vas a poder encontrar la información nutricional de productos
+                        de supermercado directamente desde sus etiquetas con el propósito de
+                        brindarte datos necesarios para tomar decisiones informadas sobre tu
+                        alimentación. Explorá la plataforma y descubrí cómo podés mejorar tu
+                        bienestar a través del conocimiento nutricional.
                     </p>
                 </div>
             </div>
         </div>
     </header>
 
-    <main>
+    <main class="px-2">
         <section>
             <div class="slider container-fluid py-2 py-md-5 mb-3">
                 <div class="wrapper">
@@ -98,7 +109,9 @@ const handleCheckboxFilter = (categoryFilter) => {
                                         d="M1.5 1.5A.5.5 0 0 1 2 1h12a.5.5 0 0 1 .5.5v2a.5.5 0 0 1-.128.334L10 8.692V13.5a.5.5 0 0 1-.342.474l-3 1A.5.5 0 0 1 6 14.5V8.692L1.628 3.834A.5.5 0 0 1 1.5 3.5zm1 .5v1.308l4.372 4.858A.5.5 0 0 1 7 8.5v5.306l2-.666V8.5a.5.5 0 0 1 .128-.334L13.5 3.308V2z"
                                     />
                                 </svg>
-                                <p class="text-balance mx-auto fs-5 ps-4">Filtrá productos por categoría</p>
+                                <p class="text-balance text-center fs-5">
+                                    Filtrá productos por categoría
+                                </p>
                             </div>
                             <div class="p-3">
                                 <svg
@@ -121,7 +134,9 @@ const handleCheckboxFilter = (categoryFilter) => {
                                         d="M6.5 3a.5.5 0 0 1 .5.5V6h2.5a.5.5 0 0 1 0 1H7v2.5a.5.5 0 0 1-1 0V7H3.5a.5.5 0 0 1 0-1H6V3.5a.5.5 0 0 1 .5-.5"
                                     />
                                 </svg>
-                                <p class="text-balance mx-auto fs-5 ps-4">Hacé zoom sobre las etiquetas</p>
+                                <p class="text-balance text-center fs-5">
+                                    Hacé zoom sobre las etiquetas
+                                </p>
                             </div>
                             <div class="p-3">
                                 <svg
@@ -139,7 +154,9 @@ const handleCheckboxFilter = (categoryFilter) => {
                                         d="m8.93 6.588-2.29.287-.082.38.45.083c.294.07.352.176.288.469l-.738 3.468c-.194.897.105 1.319.808 1.319.545 0 1.178-.252 1.465-.598l.088-.416c-.2.176-.492.246-.686.246-.275 0-.375-.193-.304-.533zM9 4.5a1 1 0 1 1-2 0 1 1 0 0 1 2 0"
                                     />
                                 </svg>
-                                <p class="text-balance mx-auto fs-5">Encontrá información sobre los productos</p>
+                                <p class="text-balance text-center fs-5">
+                                    Encontrá información sobre los productos
+                                </p>
                             </div>
                         </div>
                     </div>
@@ -171,10 +188,18 @@ const handleCheckboxFilter = (categoryFilter) => {
                         class="d-flex flex-wrap align-items-center justify-content-around row-gap-3"
                     >
                         <CardItem
-                            v-for="product in filteredProducts"
+                            v-for="product in slicedProducts"
                             :key="product.id"
                             :product="product"
                         />
+                        <button
+                            v-if="slicedProducts.length < filteredProducts.length"
+                            @click="handleLoadMoreCards"
+                            class="loadmore-btn btn border border-dark px-2 py-1"
+                        >
+                            Mostrar más
+                            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" height="16" width="16" class="d-inline-block ms-1"><path d="M233.4 406.6c12.5 12.5 32.8 12.5 45.3 0l192-192c12.5-12.5 12.5-32.8 0-45.3s-32.8-12.5-45.3 0L256 338.7 86.6 169.4c-12.5-12.5-32.8-12.5-45.3 0s-12.5 32.8 0 45.3l192 192z"/></svg>
+                        </button>
                     </div>
                     <h3 v-else class="display-1 fw-bolder text-center">
                         No se han encontrado productos que coincidan con la búsqueda.
@@ -201,5 +226,10 @@ h1 {
 
 .slider p {
     width: 220px;
+}
+
+.loadmore-btn:hover svg {
+    transition: 100ms;
+    fill: var(--color-pastel-4) !important;
 }
 </style>

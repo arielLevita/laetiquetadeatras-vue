@@ -49,12 +49,12 @@ export default {
 
 <template>
     <div class="wrapper">
-        <p class="text-center my-3 my-md-4">
+        <p class="text-center my-3 my-md-4 px-2">
             Si tenés alguna consulta o querés agregar información, no dudes en enviarnos un mensaje.
         </p>
     </div>
 
-    <div class="wrapper py-4">
+    <div class="wrapper mb-4 px-3">
         <div class="row">
             <div class="col"></div>
             <div class="col-12 col-md-8 col-lg-6 contact-form shadow p-4 rounded rounded-lg">
