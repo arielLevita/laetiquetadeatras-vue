@@ -83,13 +83,13 @@ export default {
 .details-image-container span {
     z-index: 5;
     position: absolute;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%);
-    -webkit-transform: translate(-50%, -50%);
-    -moz-transform: translate(-50%, -50%);
-    -ms-transform: translate(-50%, -50%);
-    -o-transform: translate(-50%, -50%);
+    width: fit-content;
+    height: fit-content;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    margin: auto;
     background: rgba(0, 0, 0, 0.8);
     display: block;
     padding: 0.5rem 1rem;
@@ -122,6 +122,12 @@ export default {
 @media (hover: none) {
     .details-image-container span {
         display: none;
+    }
+}
+
+@media screen and (max-width: '767px') {
+    .details-image-container span {
+        bottom: 92%;
     }
 }
 </style>

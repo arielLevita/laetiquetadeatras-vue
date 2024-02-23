@@ -2,6 +2,7 @@
 export default {
     data() {
         return {
+            project: 'La Etiqueta de Atrás',
             name: '',
             email: '',
             product: '',
@@ -20,6 +21,7 @@ export default {
                 },
                 body: JSON.stringify({
                     access_key: import.meta.env.VITE_WEB3FORMS_ACCESS_KEY,
+                    project: this.project,
                     name: this.name,
                     email: this.email,
                     product: this.product,
@@ -144,7 +146,6 @@ export default {
 <style scope>
 .contact-form,
 .form-control {
-    background-color: var(--color-pastel-3);
     border: 1px solid rgba(0, 0, 0, 0.25);
 }
 
