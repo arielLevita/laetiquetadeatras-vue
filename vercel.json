@@ -1,8 +1,12 @@
 {
-    "rewrites": [
+    "routes": [
         {
-            "source": "/(.*)*",
-            "destination": "/error"
+            "handle": "filesystem"
+        },
+        {
+            "src": "/(.*)",
+            "status": 404,
+            "dest": "/error"
         }
     ]
 }
