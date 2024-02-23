@@ -23,7 +23,7 @@ const categoryFilter = (e) => {
     <div
         v-for="category in categories"
         :key="category"
-        class="category-selector d-inline-flex align-items-center m-1 px-2 py-1 border border-dark border-opacity-25 rounded"
+        class="category-selector d-inline-flex align-items-center m-1 px-2 py-1"
     >
         <input
             class="form-check-input mx-2 my-0 border border-dark border-opacity-50"
@@ -48,7 +48,7 @@ const categoryFilter = (e) => {
     background-color: var(--color-logo);
 }
 
-@media screen and (width <= 500px) {
+@media screen and (width <= 768px) {
     .category-selector {
         width: 100%;
     }

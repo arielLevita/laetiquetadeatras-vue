@@ -14,6 +14,7 @@ let searchFilter = ref('')
 let checkboxFilter = ref([])
 let textFiltered = ref([])
 let cardsToShow = ref(6)
+let showFilters = ref(false)
 
 onMounted(async () => {
     try {
@@ -166,13 +167,48 @@ const handleCheckboxFilter = (categoryFilter) => {
 
         <section>
             <div class="wrapper">
-                <div class="my-5 py-md-3">
+                <div class="my-5 py-md-3 position-relative">
                     <SearchForm @searchTerm="handleSearch" />
 
-                    <p class="m-0 py-2">Filtrar por categoría:</p>
-                    <form action="#" class="d-flex flex-wrap" id="categorySelectors">
+                    <p class="d-none d-md-block m-0 mt-3">Filtrar por categoría:</p>
+                    <button
+                        class="d-flex align-items-center d-md-none ms-auto py-1 px-2 btn shadow border border-dark border-opacity-50"
+                        @click="showFilters = !showFilters"
+                    >
+                        Filtrar por categoría
+                        <svg
+                            xmlns="http://www.w3.org/2000/svg"
+                            width="24"
+                            height="24"
+                            fill="currentColor"
+                            class="bi bi-filter ms-2"
+                            viewBox="0 0 16 16"
+                        >
+                            <path
+                                d="M6 10.5a.5.5 0 0 1 .5-.5h3a.5.5 0 0 1 0 1h-3a.5.5 0 0 1-.5-.5m-2-3a.5.5 0 0 1 .5-.5h7a.5.5 0 0 1 0 1h-7a.5.5 0 0 1-.5-.5m-2-3a.5.5 0 0 1 .5-.5h11a.5.5 0 0 1 0 1h-11a.5.5 0 0 1-.5-.5"
+                            />
+                        </svg>
+                    </button>
+                    <form
+                        v-if="showFilters"
+                        action="#"
+                        class="categorySelectors d-flex d-md-none flex-wrap position-absolute w-75 z-1 rounded rounded-2 shadow border border-dark border-opacity-50"
+                    >
                         <div
-                            class="d-flex flex-wrap justify-content-start align-items-center p-2 my-1 rounded rounded-lg w-100"
+                            class="d-flex flex-wrap justify-content-start align-items-center p-md-2 my-1 rounded rounded-lg w-100"
+                        >
+                            <CheckboxFilter
+                                :products="products"
+                                @categoryFilter="handleCheckboxFilter"
+                            />
+                        </div>
+                    </form>
+                    <form
+                        action="#"
+                        class="d-none d-md-flex flex-wrap"
+                    >
+                        <div
+                            class="d-flex flex-wrap justify-content-start align-items-center p-md-2 rounded rounded-lg w-100"
                         >
                             <CheckboxFilter
                                 :products="products"
@@ -198,7 +234,17 @@ const handleCheckboxFilter = (categoryFilter) => {
                             class="loadmore-btn btn border border-dark px-2 py-1"
                         >
                             Mostrar más
-                            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" height="16" width="16" class="d-inline-block ms-1"><path d="M233.4 406.6c12.5 12.5 32.8 12.5 45.3 0l192-192c12.5-12.5 12.5-32.8 0-45.3s-32.8-12.5-45.3 0L256 338.7 86.6 169.4c-12.5-12.5-32.8-12.5-45.3 0s-12.5 32.8 0 45.3l192 192z"/></svg>
+                            <svg
+                                xmlns="http://www.w3.org/2000/svg"
+                                viewBox="0 0 512 512"
+                                height="16"
+                                width="16"
+                                class="d-inline-block ms-1"
+                            >
+                                <path
+                                    d="M233.4 406.6c12.5 12.5 32.8 12.5 45.3 0l192-192c12.5-12.5 12.5-32.8 0-45.3s-32.8-12.5-45.3 0L256 338.7 86.6 169.4c-12.5-12.5-32.8-12.5-45.3 0s-12.5 32.8 0 45.3l192 192z"
+                                />
+                            </svg>
                         </button>
                     </div>
                     <h3 v-else class="display-1 fw-bolder text-center">
@@ -226,6 +272,12 @@ h1 {
 
 .slider p {
     width: 220px;
+}
+
+.categorySelectors {
+    right: 0;
+    top: 110%;
+    background-color: var(--color-pastel-4);
 }
 
 .loadmore-btn:hover svg {
