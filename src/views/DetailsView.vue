@@ -121,7 +121,7 @@ export default {
     }
 }
 
-@media screen and (max-width: '767px') {
+@media only screen and (max-width: 767px) {
     .details-image-container span {
         bottom: 92%;
     }
