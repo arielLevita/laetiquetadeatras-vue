@@ -1,5 +1,5 @@
 import { initializeApp } from "firebase/app";
-import { getFirestore, getDocs, collection/* , addDoc */ } from "firebase/firestore/lite";
+import { getFirestore, getDocs, collection } from "firebase/firestore/lite";
 
 const firebaseConfig = {
     apiKey: import.meta.env.VITE_API_KEY,
@@ -12,21 +12,6 @@ const firebaseConfig = {
 
 const app = initializeApp(firebaseConfig);
 const db = getFirestore(app);
-
-/* addDoc(collection(db, "productos"), {
-    brand: "Royal",
-    name: "Gelatina Frutilla Regular Royal 25g",
-    category: "Para preparar",
-    servingSize: "3 g. de productoen polvo (1 cuchara de té)",
-    imageFront: "https://i.postimg.cc/yNQ7CTsD/image.jpg",
-    imageBack: "https://i.postimg.cc/Y9vMrmCb/image.jpg"
-})
-    .then((docRef) => {
-        console.log("Document written with ID: ", docRef.id);
-    })
-    .catch((error) => {
-        console.error("Error adding document: ", error);
-    }); */
 
 const getProducts = async () => {
     try {

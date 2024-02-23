@@ -76,10 +76,6 @@ export default {
     box-sizing: inherit;
 }
 
-/* .details-image-container:hover {
-    cursor: zoom-in;
-} */
-
 .details-image-container span {
     z-index: 5;
     position: absolute;
