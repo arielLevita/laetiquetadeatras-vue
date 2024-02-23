@@ -23,6 +23,11 @@ const router = createRouter({
       path: '/:pathMatch(.*)*',
       name: 'error',
       component: () => import('@/views/ErrorPageView.vue')
+    },
+    {
+      path: '/error',
+      name: 'vercelError',
+      component: () => import('@/views/ErrorPageView.vue')
     }
   ]
 })
