@@ -2,7 +2,7 @@ import { createRouter, createWebHistory } from 'vue-router'
 import HomeView from '../views/HomeView.vue'
 
 const router = createRouter({
-  history: createWebHistory(import.meta.env.BASE_URL),
+  history: createWebHistory(import.meta.env.VITE_BASE_URL),
   routes: [
     {
       path: '/',
@@ -22,11 +22,6 @@ const router = createRouter({
     {
       path: '/:pathMatch(.*)*',
       name: 'error',
-      component: () => import('@/views/ErrorPageView.vue')
-    },
-    {
-      path: '/error',
-      name: 'vercelError',
       component: () => import('@/views/ErrorPageView.vue')
     }
   ]
