@@ -220,7 +220,7 @@ const handleCheckboxFilter = (categoryFilter) => {
 
                 <div class="py-md-3">
                     <div
-                        v-if="products.length > 0"
+                        v-if="filteredProducts.length > 0"
                         class="d-flex flex-wrap align-items-center justify-content-around row-gap-3"
                     >
                         <CardItem
